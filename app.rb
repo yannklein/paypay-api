@@ -4,9 +4,12 @@ require 'sinatra/activerecord'
 require 'pry'
 require 'active_support/core_ext/string/output_safety'
 require "awesome_print"
-require 'dotenv/load'
 require 'json'
-Dotenv.load
+
+if Sinatra::Base.environment == :development
+  require 'dotenv/load'
+  Dotenv.load
+end
 
 AwesomePrint.defaults = {
   indent: -2,
