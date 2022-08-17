@@ -27,6 +27,7 @@ GEM
     multi_json (1.15.0)
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.8)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
@@ -34,6 +35,8 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    puma (5.6.4)
+      nio4r (~> 2.0)
     rack (2.2.4)
     rack-protection (2.2.2)
       rack
@@ -98,6 +101,7 @@ DEPENDENCIES
   httpclient
   pg
   pry
+  puma
   rake
   rspec
   rubocop
