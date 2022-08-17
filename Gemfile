@@ -12,6 +12,7 @@ gem 'faker'
 gem 'httpclient'
 gem 'awesome_print'
 gem 'activesupport'
+gem 'puma'
 
 group :development do
   gem 'sqlite3'
