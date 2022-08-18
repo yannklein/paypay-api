@@ -1,34 +1,48 @@
-## ActiveRecord basics boilerplate
+# PayPay API call examples in Ruby 💎
 
-This is a minimalist implementation of ActiveRecord with one `Restaurant` model to live-code a demo for @LeWagon students, part of [Karr examples](https://github.com/lewagon/karr-examples), working with Sinatra.
+## How to use
 
-- clone the repo
-- run `rake db:create` to create your db
-- run your migrations with `rake db:migrate`
-
-Now you can play with the `Restaurant` model:
-
-```bash
-rake console
+- Create an `.env` fine in the root folder
+- Create a [PayPay developer account](https://developer.paypay.ne.jp/dashboard/home), in test mode.
+- After 15min, you credential would appear on the dashboard, save the `Merchand Id`, the `Key Id` and the `Secret Id` in you `.env` file as follows:
+```
+API_KEY=YOUR_API_KEY_HERE
+API_SECRET=YOUR_API_SECRET_HERE
+MERCHANT_ID=YOUR_MERCHANT_ID_HERE
 ```
 
-Here are some commands you can run in the console:
-
-```ruby
-restaurant = Restaurant.new(name: "La Tour d'Argent", address: "15 Quai de la Tournelle, 75005 Paris")
-restaurant.persisted?
-# => false
-restaurant.id
-# => nil
-restaurant.save
-restaurant.id
-# => 1
+Example:
+```
+API_KEY=a_Jr5R9YqHEthisisdummy
+API_SECRET=lgo1nX9BqBV6qiHY/mYa96ws0kGn2Ri1hthisisdummy
+MERCHANT_ID=5448489472thisisdummy
 ```
 
-To launch a Sinatra server just run this and open a web browser at [http://localhost:4567](http://localhost:4567):
-
-```bash
-bundle exec ruby app.rb
+- Run:
+```
+ bundle
+ ruby app.rb
 ```
 
-Enjoy!
+## How to deploy
+
+- Create a heroku app: `heroku create YOUR_HEROKU_APP`
+- Push to heroku
+```
+git add .
+git commit -m "commit changes before first push to heroku"
+git push heroku main
+```
+- Add env variables to Heroku (**put your own keys**):
+```
+heroku config:set API_KEY=YOUR_API_KEY_HERE
+heroku config:set API_SECRET=YOUR_API_SECRET_HERE
+heroku config:set API_KEY=YOUR_API_KEY_HERE
+```
+- Run `heroku open`
+
+## Additional resources
+
+- I based myself on [this work](https://qiita.com/aoyagikouhei/items/bc5ef1db0191d79a7da6) from @aoyaikouhei
+- [PayPay dev dashboard](https://developer.paypay.ne.jp/dashboard/home)
+- [Paypay doc](https://developer.paypay.ne.jp/products/docs/qrcode)
