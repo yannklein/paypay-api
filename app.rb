@@ -24,37 +24,29 @@ AwesomePrint.defaults = {
 }
 
 require_relative 'config/application'
-require_relative "services/paypay"
+require_relative 'services/paypay'
 
 get '/' do
   @results = {}
 
   if params.any?
-    builder = PayPay::QrCodeCreateBuilder.new()
-    builder.merchantPaymentId()
-    builder.addItem(
-      params["product"], 
-      params["category"], 
-      params["quantity"].to_i,
-      rand(1..100).to_s, 
-      params["price"].to_i
+    builder = PayPay::QrCodeCreateBuilder.new
+    builder.merchant_payment_id
+    builder.add_item(
+      params['product'],
+      params['category'],
+      params['quantity'].to_i,
+      rand(1..100).to_s,
+      params['price'].to_i
     )
     client = PayPay::Client.new(ENV['API_KEY'], ENV['API_SECRET'], ENV['MERCHANT_ID'])
-    message = client.qr_code_create(builder.finish())
+    message = client.qr_code_create(builder.finish)
     @results = JSON.parse(message.content)
-    @page_url = @results["data"]["url"] unless @results["data"].nil?
+    @page_url = @results['data']['url'] unless @results['data'].nil?
   end
 
   erb :index
 end
-
-# Ruby embedded into views files
-# pe + tab   ->    <%=  %>     (display something)
-# er + tab   ->    <%   %>     (display nothing)
-
-
-
-
 
 # DO NOT CHANGE BELOW LINES
 # Some configuration for Sinatra to be hosted and operational on Heroku
